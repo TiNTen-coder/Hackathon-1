@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request, redirect, url_for
 from base64 import *
+import json
 
 app = Flask(__name__)
 
@@ -9,8 +10,8 @@ app = Flask(__name__)
 def start():
     if request.method == "GET":
         json_file = request.get_json()
-        data = b64decode(json_file["data"])
-        return redirect(url_for(f'{data["first_button"]["status"]}'), 301)
+        data = json.loads(b64decode(json_file["data"]).decode('utf-8'))
+        return redirect(url_for(f'{data["telemetry"]["firstButton"]["status"]}'), 301)
 
 @app.route('/click')
 def click():
