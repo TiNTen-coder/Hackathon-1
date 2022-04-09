@@ -6,16 +6,11 @@ import json
 import os
 
 app = Flask(__name__)
+CORS(app)
 
 
-def create_app():
-    app = Flask(__name__)
-    CORS(app)
-
-    @app.route('/')
-    def start():
-        return '1'
-
+@app.route('/')
+def start():
     return app
 
 
