@@ -12,6 +12,8 @@ def start():
         json_file = request.get_json()
         data = json.loads(b64decode(json_file["data"]).decode('utf-8'))
         return redirect(url_for(f'{data["telemetry"]["firstButton"]["status"]}'), 301)
+    else:
+        return '123123123'
 
 @app.route('/click')
 def click():
