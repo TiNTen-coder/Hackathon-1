@@ -9,13 +9,13 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def start():
-    if request.method == "GET":
-        json_file = request.files['file']
-        return f'{str(json_file)}'
+    a = 0
+    if request.method == "POST":
+        a += 1
         # data = json.loads(b64decode(json_file["data"]).decode('utf-8'))
         # return redirect(url_for(f'/{data["telemetry"]["firstButton"]["status"]}'), 301)
         # return f'/{data["telemetry"]["firstButton"]["status"]}'
-
+    return f'{str(a)}'
 
 @app.route('/click')
 def click():
@@ -35,3 +35,5 @@ def long_press():
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
+    #app.run(host='127.0.0.1', port=port)
+
