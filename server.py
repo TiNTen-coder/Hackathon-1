@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request, redirect, url_for
+from flask_cors import CORS
 from base64 import *
 import json
 import os
@@ -7,31 +8,10 @@ import os
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def start():
-    a = 0
-    if request.method == "POST":
-        a += 1
-        return redirect('/click', 301)
-        # data = json.loads(b64decode(json_file["data"]).decode('utf-8'))
-        # return redirect(url_for(f'/{data["telemetry"]["firstButton"]["status"]}'), 301)
-        # return f'/{data["telemetry"]["firstButton"]["status"]}'
-    return f'{str(a)}'
-
-
-@app.route('/click')
-def click():
-    return 'click'
-
-
-@app.route('/double_click')
-def double_click():
-    return 'double_click'
-
-
-@app.route('/long_press')
-def long_press():
-    return 'long_press'
+    CORS(app)
+    return app
 
 
 if __name__ == '__main__':
