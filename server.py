@@ -27,7 +27,7 @@ def double_click():
 
 
 @app.route('/long_press')
-def double_click():
+def long_press():
     return 'long_press'
 
 
