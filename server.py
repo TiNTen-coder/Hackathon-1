@@ -8,6 +8,8 @@ app = Flask(__name__)
 
 @app.route('/',  methods=['GET', 'POST'])
 def index():
+    return request.get_json()
+'''    
     try:
         json_file = request.get_json()
         data = json.loads(b64decode(json_file["data"]).decode('utf-8'))
@@ -29,6 +31,7 @@ def double_click():
 @app.route('/long_press')
 def long_press():
     return 'long_press'
+'''
 
 
 if __name__ == '__main__':
