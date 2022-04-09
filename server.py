@@ -8,8 +8,7 @@ app = Flask(__name__)
 @app.route('/', methods=['POST'])
 def start():
     if request.method == "POST":
-        data = request.get_json()
-    return data
+        print(request.get_json())
 
 
 if __name__ == '__main__':
