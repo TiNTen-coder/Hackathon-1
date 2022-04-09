@@ -5,11 +5,11 @@ from base64 import *
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['POST'])
 def start():
-    if request.method == "GET":
-        data = request.get_data()
-        print(standard_b64decode(data))
+    if request.method == "POST":
+        data = request.get_json()
+    return data
 
 
 if __name__ == '__main__':
