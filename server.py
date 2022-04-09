@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import request
-import json
+from base64 import *
 
 app = Flask(__name__)
 
@@ -8,8 +8,8 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def start():
     if request.method == "GET":
-        json_dict = request.get_json()
-        print(json_dict)
+        data = request.get_data()
+        print(standard_b64decode(data))
 
 
 if __name__ == '__main__':
