@@ -8,9 +8,14 @@ import os
 app = Flask(__name__)
 
 
-@app.route('/')
-def start():
+def create_app():
+    app = Flask(__name__)
     CORS(app)
+
+    @app.route('/')
+    def start():
+        return '1'
+
     return app
 
 
