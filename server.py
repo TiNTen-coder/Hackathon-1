@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import request, redirect, url_for, render_template
+from flask import request, redirect, url_for
 from base64 import *
 import json
 import os
@@ -8,13 +8,11 @@ app = Flask(__name__)
 
 
 @app.route('/', methods=['GET', 'POST'])
-def index():
-    try:
+def start():
+    if request.method == "GET":
         json_file = request.get_json()
         data = json.loads(b64decode(json_file["data"]).decode('utf-8'))
         return redirect(url_for(f'/{data["telemetry"]["firstButton"]["status"]}'), 301)
-    except:
-        return render_template('start.html')
 
 
 @app.route('/click')
@@ -28,13 +26,10 @@ def double_click():
 
 
 @app.route('/long_press')
-def long_press():
+def double_click():
     return 'long_press'
 
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
-    '''json_file = get(f'http://localhost:{port}').json()
-    data = json.loads(b64decode(json_file["data"]).decode('utf-8'))
-    redirect(url_for(f'{data["telemetry"]["firstButton"]["status"]}'), 301)'''
     app.run(host='0.0.0.0', port=port)
