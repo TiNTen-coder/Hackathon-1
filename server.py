@@ -1,19 +1,19 @@
 from flask import Flask
-from flask import request, redirect, url_for
+from flask import request, redirect, url_for, render_template
 from base64 import *
 import json
 
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET', 'POST', 'OPTIONS'])
-def start():
+@app.route('/',  methods=['GET', 'POST'])
+def index():
     try:
         json_file = request.get_json()
         data = json.loads(b64decode(json_file["data"]).decode('utf-8'))
         return redirect(url_for(f'{data["telemetry"]["firstButton"]["status"]}'), 301)
     except:
-        return '123123123'
+        return render_template('start.html')
 
 
 @app.route('/click')
