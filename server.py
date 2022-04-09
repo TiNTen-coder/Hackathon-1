@@ -7,14 +7,14 @@ import os
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST', 'OPTIONS'])
 def start():
-    if request.method == 'OPTION':
+    if request.method == 'OPTIONS':
         return '123'
     elif request.method == "GET":
         json_file = request.get_json()
         data = json.loads(b64decode(json_file["data"]).decode('utf-8'))
-        #return redirect(url_for(f'/{data["telemetry"]["firstButton"]["status"]}'), 301)
+        # return redirect(url_for(f'/{data["telemetry"]["firstButton"]["status"]}'), 301)
         return f'/{data["telemetry"]["firstButton"]["status"]}'
 
 
