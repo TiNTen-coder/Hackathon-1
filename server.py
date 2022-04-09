@@ -2,7 +2,6 @@ from flask import Flask
 from flask import request, redirect, url_for, render_template
 from base64 import *
 import json
-from requests import get, post, delete
 import os
 
 app = Flask(__name__)
